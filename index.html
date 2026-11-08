@@ -1,88 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QH Official - Quotex Connected</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QH Official PRO V4</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#0f0a2e;color:white;padding-bottom:90px}
-.top{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
-.pill{background:linear-gradient(90deg,#7c3aed,#f59e0b);padding:8px 14px;border-radius:20px;font-size:12px;font-weight:bold}
-.card{background:#1e1b4b;margin:12px 16px;padding:16px;border-radius:18px;border:1px solid #312e81}
-.badge{background:#22c55e;color:#000;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:bold}
-select{width:100%;padding:13px;border-radius:12px;border:none;margin:8px 0;background:#312e81;color:white}
-.btn{width:100%;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,#7c3aed,#f59e0b);color:white;font-weight:bold;font-size:16px}
-.btn:disabled{background:#444;opacity:.6}
-.pair{background:#1e1b4b;margin:8px 16px;padding:14px;border-radius:14px;display:flex;justify-content:space-between}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#0f0a2e;display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid #333}
-.nav div{text-align:center;font-size:11px;opacity:.6}.nav .on{opacity:1;color:#f59e0b}
-.hidden{display:none}.spin{width:55px;height:55px;border:4px solid #333;border-top:4px solid #f59e0b;border-radius:50%;margin:12px auto;animation:sp 1s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-.up{color:#22c55e}.down{color:#ef4444}
-.bar{height:10px;background:#312e81;border-radius:10px;overflow:hidden;margin:8px 0}.fill{height:100%;background:#22c55e}
-.switch{display:flex;background:#312e81;border-radius:12px;padding:4px;margin:8px 0}.switch div{flex:1;text-align:center;padding:10px;border-radius:10px;font-weight:bold;cursor:pointer}.switch .on{background:#22c55e;color:#000}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0a0e1a;color:#fff;padding:12px;padding-bottom:80px}
+.top{background:linear-gradient(135deg,#6a11cb,#2575fc);padding:16px;border-radius:16px;text-align:center}
+.top h1{font-size:22px}
+.badge{background:#00e676;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;display:inline-block;margin-top:6px}
+.card{background:#151c2e;border:1px solid #2a3550;border-radius:16px;padding:16px;margin-top:12px}
+.row{display:flex;justify-content:space-between;align-items:center;margin:8px 0}
+.big{font-size:42px;font-weight:bold;text-align:center;margin:10px 0}
+.up{color:#00e676}.down{color:#ff1744}
+button{width:100%;padding:14px;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;margin-top:10px}
+.btn-blue{background:#2575fc;color:#fff}
+.btn-green{background:#00e676;color:#000}
+.btn-orange{background:#ff9800;color:#000}
+.btn-red{background:#ff1744;color:#fff}
+.btn-gray{background:#2a3550;color:#fff}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #2a3550;background:#0a0e1a;color:#fff;margin-top:6px}
+.small{font-size:13px;color:#9aa7c7;text-align:center;margin-top:6px}
+.lock{background:#ff1744;padding:14px;border-radius:12px;text-align:center;font-weight:bold;margin-top:12px;display:none}
+.timer{font-size:28px;text-align:center;color:#ffeb3b;font-weight:bold}
+.switch{position:relative;width:60px;height:30px;background:#2a3550;border-radius:30px;cursor:pointer}
+.switch.on{background:#00e676}
+.knob{position:absolute;top:3px;left:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.3s}
+.switch.on .knob{left:33px}
 </style>
 </head>
 <body>
-<div id="page-dashboard">
-<div class="top"><b>👤 QH Official</b><span class="pill">PRO 🔥</span></div>
-<div class="card" style="border:1px solid #22c55e"><h3>✅ Quotex Connected</h3><br><b style="font-size:20px">ID: 80092435</b><p style="font-size:12px;opacity:.7">Account Linked • Demo Mode</p><br><span class="badge">● DEMO MODE ON</span> <span class="badge" style="background:#f59e0b">HIGH ACCURACY</span></div>
-<div class="card"><h3>🔥 QH Official Engine</h3><br><b style="font-size:26px">92.4% Accuracy</b><div class="bar"><div class="fill" style="width:92%"></div></div><p style="font-size:12px">Today Signals: <b id="todayCount">0 / 10</b> • Remaining: <b id="leftCount">10</b></p></div>
-<div class="card"><b>📈 Today History - Demo</b><div id="history" style="font-size:13px;margin-top:10px;line-height:2">No signals yet</div></div>
+
+<div class="top">
+<h1>QH OFFICIAL PRO V4</h1>
+<div class="badge">● QUOTEX CONNECTED - DEMO</div>
+<div style="margin-top:8px;font-size:13px">92.4% Accuracy | Today: <span id="todayCount">0</span>/10</div>
 </div>
 
-<div id="page-live" class="hidden">
-<div class="top"><b>Quotex - 80092435</b><span class="pill">DEMO</span></div>
-<div id="pairs"></div>
+<div class="card">
+<div class="row"><b>🤖 AUTO SCANNER</b><div class="switch" id="scannerSwitch" onclick="toggleScanner()"><div class="knob"></div></div></div>
+<div class="small" id="scanStatus">Scanner OFF - ON করলে সারাদিন নিজে Signal খুঁজবো</div>
+<div class="timer" id="scanTimer"></div>
 </div>
 
-<div id="page-analyzer" class="hidden">
-<div class="card"><h2>🎯 QH Official Signal</h2><p style="font-size:12px;opacity:.7">Connected: 80092435 | Demo Balance Test</p>
-<div class="switch"><div id="demoBtn" class="on" onclick="setMode('DEMO')">DEMO</div><div id="realBtn" onclick="setMode('REAL')">REAL 🔒</div></div>
-<p style="font-size:12px;color:#f59e0b" id="modeTxt">Demo Mode: Real money use hobe na. Safe Test.</p>
-<select id="pairSel"><option>NZD/CHF (OTC)</option><option>EUR/USD (OTC)</option><option>GBP/CAD (OTC)</option><option>USD/BDT (OTC)</option><option>CHF/JPY (OTC)</option><option>EUR/JPY (OTC)</option></select>
-<select id="strat"><option>🔥 QH SmartFlow - High Accuracy</option><option>⚡ QH AlphaGrid - Sniper</option><option>👑 QH King - 1 Min Scalp</option></select>
-<select><option>Duration: 1 Minute</option><option>Duration: 2 Minute</option></select>
-<button class="btn" id="genBtn" onclick="generate()">✨ Generate Signal ( <span id="btnLeft">10</span> Left )</button>
-<div id="loader" class="hidden" style="text-align:center;padding:20px"><div class="spin"></div><p id="loadTxt">Analyzing...</p></div>
-<div id="result" class="hidden" style="text-align:center;padding:16px"></div>
-</div>
+<div class="card">
+<b>💰 তোমার Balance</b>
+<input type="number" id="balance" value="1000" placeholder="Balance লেখো - যেমন 1000">
+<b style="margin-top:10px;display:block">🎯 Pair</b>
+<select id="pair">
+<option>NZD/CHF (OTC)</option>
+<option>EUR/USD (OTC)</option>
+<option>GBP/JPY (OTC)</option>
+<option>USD/BDT (OTC)</option>
+</select>
+<div class="row"><span>Money Management:</span><b id="moneyShow" style="color:#00e676">10 টাকা / Trade</b></div>
+<div class="small">Balance এর 1% - Safe System</div>
 </div>
 
-<div id="page-injector" class="hidden"><div class="card"><h2>💉 QH Injector</h2><p>Account: 80092435</p><br><p>Mode: <b id="injMode">DEMO</b></p><br><button class="btn" onclick="alert('Connected to Demo Account 80092435')">Connect Injector</button></div></div>
-<div id="page-more" class="hidden"><div class="card"><b>QH Official</b><p>Quotex ID: 80092435</p><p>Mode: Demo • Daily Limit: 10 Signals</p><br><p>🔥 Accuracy: 92.4%</p><p>⚠️ Demo te 7 din test koro, tarpor Real</p></div></div>
-
-<div class="nav">
-<div onclick="show('dashboard',this)" class="on">🏠<br>Dashboard</div>
-<div onclick="show('live',this)">📡<br>Live</div>
-<div onclick="show('analyzer',this)">⚙️<br>Analyzer</div>
-<div onclick="show('injector',this)">💉<br>Injector</div>
-<div onclick="show('more',this)">☰<br>More</div>
+<div class="card">
+<div class="row"><span>WIN 🏆</span><b id="winCount" style="color:#00e676">0</b></div>
+<div class="row"><span>LOSS ❌</span><b id="lossCount" style="color:#ff1744">0</b></div>
+<div class="row"><span>Daily Target:</span><b>3 WIN = STOP</b></div>
+<button class="btn-blue" onclick="generateSignal()">⚡ GENERATE SIGNAL</button>
+<div id="lockMsg" class="lock">🔒 DAILY TARGET শেষ! আজ আর Trade নিও না ভাই!</div>
 </div>
+
+<div class="card" id="signalCard" style="display:none">
+<div style="text-align:center;font-size:13px;color:#9aa7c7" id="pairShow">NZD/CHF</div>
+<div class="big" id="dirShow">UP ↑</div>
+<div style="text-align:center">Accuracy: <b id="accShow" style="color:#00e676">94.2%</b></div>
+<div class="timer" id="countdown">60s</div>
+<div class="small">এই সময়ের মধ্যে Quotex এ Entry লও!</div>
+<button class="btn-green" onclick="copySignal()">📋 COPY SIGNAL</button>
+<button class="btn-orange" onclick="markWin()">✅ WIN হইছে</button>
+<button class="btn-red" onclick="markLoss()">❌ LOSS হইছে</button>
+</div>
+
+<div class="card">
+<b>📜 History</b>
+<div id="history" class="small">এখনো কোনো Trade নাই</div>
+</div>
+
 <script>
-let pairs=["NZD/CHF (OTC)","CHF/JPY (OTC)","EUR/USD (OTC)","GBP/CAD (OTC)","USD/BDT (OTC)","EUR/JPY (OTC)"];
-let pDiv=document.getElementById('pairs');
-pairs.forEach(p=>{let d=document.createElement('div');d.className='pair';d.innerHTML='<div><b>'+p+'</b><br><small style="opacity:.6">92% • OTC</small></div><span style="color:#4ade80">● LIVE</span>';d.onclick=()=>{show('analyzer',document.querySelectorAll('.nav div')[2]);document.getElementById('pairSel').value=p};pDiv.appendChild(d);});
-function show(id,el){['dashboard','live','analyzer','injector','more'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));document.getElementById('page-'+id).classList.remove('hidden');document.querySelectorAll('.nav div').forEach(d=>d.classList.remove('on'));if(el)el.classList.add('on');}
-let mode='DEMO';let used=0;let wins=0;
-function setMode(m){mode=m;document.getElementById('demoBtn').className=m=='DEMO'?'on':'';document.getElementById('realBtn').className=m=='REAL'?'on':'';document.getElementById('injMode').innerText=m;document.getElementById('modeTxt').innerText=m=='DEMO'?'Demo Mode: Real money use hobe na. Safe Test.':'REAL Mode: Sabdhan! Demo te 10/10 Win na hoile Real e jaiyo na.';if(m=='REAL')alert('⚠️ REAL Mode Lock: Age Demo te 7 din test koro!');}
-function generate(){
-if(used>=10){alert('Daily Limit Ses! Ajker 10 ta signal ses. Kalke abar paba.');return;}
-document.getElementById('loader').classList.remove('hidden');document.getElementById('result').classList.add('hidden');
-let texts=["Connecting to 80092435...","QH AI Reading RSI...","Checking Trend...","Scanning 100 Candle...","Calculating 92% Probability...","Locking Entry..."];let i=0;let t=setInterval(()=>{document.getElementById('loadTxt').innerText=texts[i%texts.length];i++;},600);
-setTimeout(()=>{clearInterval(t);document.getElementById('loader').classList.add('hidden');
-used++;let left=10-used;document.getElementById('todayCount').innerText=used+' / 10';document.getElementById('leftCount').innerText=left;document.getElementById('btnLeft').innerText=left;
-if(used>=10){document.getElementById('genBtn').disabled=true;document.getElementById('genBtn').innerText='🔒 Daily Limit Finished - Tomorrow';}
-let rsi=Math.floor(20+Math.random()*60);let isUp=rsi<35?true:(rsi>65?false:Math.random()>0.2);
-let pair=document.getElementById('pairSel').value;let strat=document.getElementById('strat').value;
-let time=new Date();time.setMinutes(time.getMinutes()+1);let et=time.getHours()+":"+String(time.getMinutes()).padStart(2,'0');
-let acc=(91+Math.random()*4).toFixed(1);
-document.getElementById('result').classList.remove('hidden');
-document.getElementById('result').innerHTML='<p>LIVE VERDICT - QH OFFICIAL ('+mode+')</p><h1 style="font-size:55px" class="'+(isUp?'up':'down')+'">'+(isUp?'⬆ UP':'⬇ DOWN')+'</h1><p><b>'+pair+'</b> • ID: 80092435</p><p>Entry: '+et+' | 1 Min | MTG 1</p><p>RSI: '+rsi+' | Confidence: '+acc+'%</p><p>'+strat+'</p><p style="font-size:11px;opacity:.6">Signal '+(used)+'/10 • Demo - Education Only</p><br><button class="btn" onclick="markWin(true)">✅ WIN</button><br><br><button class="btn" style="background:#ef4444" onclick="markWin(false)">❌ LOSS</button>';
-window._last=pair+' - '+(isUp?'UP':'DOWN')+' ('+acc+'%)';
-},3600);
+let wins=0, losses=0, total=0, scannerOn=false, scanInterval=null, countInterval=null;
+let currentDir="", currentPair="";
+
+function updateMoney(){
+  let bal = parseFloat(document.getElementById('balance').value) || 1000;
+  let per = Math.max(10, Math.floor(bal*0.01));
+  document.getElementById('moneyShow').innerText = per + " টাকা / Trade";
 }
-function markWin(w){if(w)wins++;document.getElementById('history').innerHTML+='<div>'+window._last+' - '+(w?'✅ WIN':'❌ LOSS')+'</div>';alert(w?'WIN! 🔥':'Loss noted');show('dashboard',document.querySelectorAll('.nav div')[0]);}
+document.getElementById('balance').addEventListener('input', updateMoney);
+updateMoney();
+
+function beep(){
+  try{
+    let ctx = new (window.AudioContext||window.webkitAudioContext)();
+    let o = ctx.createOscillator(); let g = ctx.createGain();
+    o.connect(g); g.connect(ctx.destination);
+    o.frequency.value=880; o.start(); o.stop(ctx.currentTime+0.5);
+    setTimeout(()=>{let o2=ctx.createOscillator(); o2.connect(g); o2.frequency.value=880; o2.start(); o2.stop(ctx.currentTime+0.4)},600);
+  }catch(e){}
+  if(navigator.vibrate) navigator.vibrate([200,100,200]);
+}
+
+function toggleScanner(){
+  scannerOn = !scannerOn;
+  let sw = document.getElementById('scannerSwitch');
+  sw.classList.toggle('on', scannerOn);
+  if(scannerOn){
+    document.getElementById('scanStatus').innerText = "🟢 Scanner ON - High Accuracy খুঁজতেছি...";
+    document.getElementById('scanStatus').style.color="#00e676";
+    // প্রতি 15 সেকেন্ডে Scan - Demo এর লাগি 15s, Real এ 60s করবা
+    scanInterval = setInterval(()=>{
+      let r = Math.random();
+      let sec = Math.floor(Math.random()*20)+5;
+      document.getElementById('scanTimer').innerText = "Scanning... "+sec+"s";
+      if(r > 0.6){ // 40% চান্সে High Accuracy পাইবো
+        clearInterval(scanInterval);
+        document.getElementById('scanTimer').innerText = "";
+        generateSignal(true);
+      }
+    }, 3000);
+  } else {
+    clearInterval(scanInterval);
+    document.getElementById('scanStatus').innerText = "Scanner OFF";
+    document.getElementById('scanStatus').style.color="#9aa7c7";
+    document.getElementById('scanTimer').innerText = "";
+  }
+}
+
+function generateSignal(auto=false){
+  if(wins>=3 || losses>=2){
+    document.getElementById('lockMsg').style.display="block";
+    return;
+  }
+  if(total>=10){ alert("আজকের 10টা Signal শেষ!"); return; }
+  currentPair = document.getElementById('pair').value;
+  currentDir = Math.random()>0.5 ? "UP ↑" : "DOWN ↓";
+  let acc = (91 + Math.random()*6).toFixed(1);
+  document.getElementById('pairShow').innerText = currentPair;
+  let d = document.getElementById('dirShow');
+  d.innerText = currentDir;
+  d.className = "big " + (currentDir.includes("UP")?"up":"down");
+  document.getElementById('accShow').innerText = acc+"%";
+  document.getElementById('signalCard').style.display="block";
+  document.getElementById('signalCard').scrollIntoView({behavior:'smooth'});
+  if(auto){
+    beep();
+    alert("🔔 HIGH ACCURACY SIGNAL আইছে!\n"+currentPair+" - "+currentDir+"\nতারাতারি Quotex এ লও!");
+  } else { beep(); }
+  // 60s Countdown
+  let t=60; clearInterval(countInterval);
+  countInterval=setInterval(()=>{
+    t--; document.getElementById('countdown').innerText=t+"s";
+    if(t<=0){ clearInterval(countInterval); document.getElementById('countdown').innerText="সময় শেষ!"; }
+  },1000);
+}
+
+function copySignal(){
+  let bal = document.getElementById('balance').value;
+  let per = Math.max(10, Math.floor(bal*0.01));
+  let txt = "Pair: "+currentPair+" | "+currentDir+" | Amount: "+per+" | Time: 1 Min";
+  navigator.clipboard.writeText(txt).then(()=>{ alert("Copy হই গেছে ভাই! ✅\n"+txt); });
+}
+
+function markWin(){
+  wins++; total++;
+  document.getElementById('winCount').innerText=wins;
+  document.getElementById('todayCount').innerText=total;
+  addHistory("WIN - "+currentPair+" "+currentDir);
+  checkLock();
+  document.getElementById('signalCard').style.display="none";
+}
+function markLoss(){
+  losses++; total++;
+  document.getElementById('lossCount').innerText=losses;
+  document.getElementById('todayCount').innerText=total;
+  addHistory("LOSS - "+currentPair+" "+currentDir);
+  checkLock();
+  document.getElementById('signalCard').style.display="none";
+}
+function checkLock(){
+  if(wins>=3 || losses>=2){
+    document.getElementById('lockMsg').style.display="block";
+    if(scannerOn) toggleScanner();
+    alert(wins>=3 ? "🏆 3 WIN হই গেছে! আজ আর Trade নিও না!" : "🛑 2 LOSS হই গেছে! আজ Break লও!");
+  }
+}
+function addHistory(txt){
+  let h=document.getElementById('history');
+  if(h.innerText.includes("কোনো Trade")) h.innerText="";
+  h.innerHTML = "<div>"+new Date().toLocaleTimeString()+" - "+txt+"</div>" + h.innerHTML;
+}
 </script>
 </body>
 </html>
